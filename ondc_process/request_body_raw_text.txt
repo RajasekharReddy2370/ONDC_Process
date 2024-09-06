@@ -1,0 +1,14 @@
+{
+    "country": "IND",
+    "city": "*",
+    "type": "BAP",
+    "subscriber_id": "createmystore.online",
+    "subscriber_url": "https://ondc.createmystore.online/api",
+    "domain": "nic2004:52110",
+    "signing_public_key": "MCowBQYDK2VwAyEAeWFxeLZgL27XASJx0Ag/TyJBE6txX1s4CDo06GGOx/I=",
+    "encr_public_key": "MCowBQYDK2VuAyEAstZcdpSjcpsFM6eclkD8p+jL6YVo4jUzM2D9biV47Ug=",
+    "created": "2024-08-29T11:06:09.489936457Z"
+    "valid_from": "2023-03-30T15:27:45.123456Z",
+    "valid_until": "2033-03-30T15:27:45.123456Z",
+    "updated": "2023-03-30T15:27:45.123456Z"
+}
