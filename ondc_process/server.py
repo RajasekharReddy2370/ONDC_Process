@@ -159,13 +159,13 @@ def createHtml(subscriber, subscriber_id):
         </body>
     </html>
     '''
-    if subscriber['type'] == "BAP":
-        if not os.path.exists(f'templates/{subscriber_id[slice(len(bapBaseUrl) + 1, len(subscriber_id))]}'):
-            os.makedirs(
-                f'templates/{subscriber_id[slice(len(bapBaseUrl) + 1, len(subscriber_id))]}')
-        with open(f"templates/{subscriber_id[slice(len(bapBaseUrl) + 1, len(subscriber_id))]}/ondc-site-verification.html", "w+") as file:
-            file.write(htmlFile)
-    elif subscriber['type'] == "BPP":
+    # if subscriber['type'] == "BAP":
+    #     if not os.path.exists(f'templates/{subscriber_id[slice(len(bapBaseUrl) + 1, len(subscriber_id))]}'):
+    #         os.makedirs(
+    #             f'templates/{subscriber_id[slice(len(bapBaseUrl) + 1, len(subscriber_id))]}')
+    #     with open(f"templates/{subscriber_id[slice(len(bapBaseUrl) + 1, len(subscriber_id))]}/ondc-site-verification.html", "w+") as file:
+    #         file.write(htmlFile)
+    if subscriber['type'] == "BPP":
         if not os.path.exists(f'templates/{subscriber_id[slice(len(bppBaseUrl) + 1, len(subscriber_id))]}'):
             os.makedirs(
                 f'templates/{subscriber_id[slice(len(bppBaseUrl) + 1, len(subscriber_id))]}')
@@ -176,7 +176,7 @@ def createHtml(subscriber, subscriber_id):
 app = Flask(__name__)
 
 
-@app.route('/on_subscribe', methods=['POST'])
+@app.route('/ondc_subscribe', methods=['POST'])
 def onsubscribe():
     data = request.get_json()
     print(f"/on_subscribe called :: Request -> {data}")
@@ -279,3 +279,16 @@ def start_flask_app():
 
 if __name__ == '__main__':
     start_flask_app()
+
+# from flask import Flask, request, jsonify
+#
+# app = Flask(__name__)
+#
+# @app.route('/ondc_subscribe', methods=['POST'])
+# def onsubscribe():
+#     data = request.get_json()
+#     print(f"/ondc_subscribe called :: Request -> {data}")
+#     return jsonify({"message": "Received"}), 200
+#
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=8080)
