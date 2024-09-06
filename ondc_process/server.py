@@ -17,7 +17,7 @@ import multiprocessing
 import threading
 import pytz
 
-bapBaseUrl = os.getenv("BAP_BASE_URL")
+# bapBaseUrl = os.getenv("BAP_BASE_URL")
 bppBaseUrl = os.getenv("BPP_BASE_URL")
 registry_url = os.getenv("REGISTRY_URL")
 app_port = os.getenv("APP_PORT")
@@ -81,7 +81,7 @@ bppSubscribeBody = {
         }
     },
     "message": {
-        "request_id": "a4fb5b0f-59dc-4589-964b-91f360325a62",
+        "request_id": "26c7c9af-d405-44da-b33d-98541de5084b",
         "timestamp": "",
         "entity": {
             "gst": {
@@ -90,24 +90,24 @@ bppSubscribeBody = {
                 "city_code": [
                     "std:0861"
                 ],
-                "gst_no": "..."
+                "gst_no": ""
             },
             "pan": {
                 "name_as_per_pan": "PGR BOOM TECHNO INDIA PRIVATE LIMITED",
                 "pan_no": "AANCP9831C",
-                "date_of_incorporation": "2023"
+                "date_of_incorporation": "07/08/2023"
             },
             "name_of_authorised_signatory": "Gopiraj Chatti",
             "email_id": "info@createmystore.online",
             "mobile_no": 7989572128,
             "country": "IND",
             "subscriber_id": "createmystore.online",
-            "unique_key_id": "",
+            "unique_key_id": "429a9c6cfef0b15c49d396c51c7a8a408651db693c367503c406fb7c65e1ba639f888e522ec5e253a614514e8c90e059b4a2c2f63476f745acca438b773f4c0b",
             "callback_url": "/",
             "key_pair": {
                 "signing_public_key": "oZKAYC6Tc95i04favGoUz5N1y6qAa0Xc8+gUWSh5Huc=",
                 "encryption_public_key": "MCowBQYDK2VuAyEAmLhAvCH4OZ9T158wIVh3NV8WY51IjzqyCMe7gKWI8yE=",
-                "valid_from": "",
+                "valid_from": "2024-09-06T11:57:54.101Z",
                 "valid_until": "2030-06-19T11:57:54.101Z"
             }
         },
@@ -213,27 +213,27 @@ def subscribe_helper():
             current_datetime_iso8601 = current_datetime.strftime(
                 "%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
 
-            if subscriber['type'] == 'BAP':
-                bapSubscribeBody['message']['request_id'] = request_id
-                bapSubscribeBody['message']['timestamp'] = current_datetime_iso8601
-                bapSubscribeBody['message']['entity']['subscriber_id'] = subscriber_id
-                bapSubscribeBody['message']['entity']['unique_key_id'] = unique_key_id
-                bapSubscribeBody['message']['entity']['key_pair']['signing_public_key'] = subscriber['signingPublicKey']
-                bapSubscribeBody['message']['entity']['key_pair']['encryption_public_key'] = subscriber['encPublicKey']
-                bapSubscribeBody['message']['entity']['key_pair']['valid_from'] = current_datetime_iso8601
-                bapSubscribeBody['message']['network_participant'][0]['city_code'] = [
-                    subscriber['city']]
-
-                print(json.dumps(bapSubscribeBody))
-
-                response = requests.post(registry_url, json=bapSubscribeBody)
-                if response.status_code == 200:
-                    print(
-                        f"/subscribe for {subscriber_uk_id} request successful :: {response.json()}")
-                else:
-                    print(
-                        f"/subscribe for {subscriber_uk_id} request failed :: {response.json()}")
-            elif subscriber['type'] == 'BPP':
+            # if subscriber['type'] == 'BAP':
+            #     bapSubscribeBody['message']['request_id'] = request_id
+            #     bapSubscribeBody['message']['timestamp'] = current_datetime_iso8601
+            #     bapSubscribeBody['message']['entity']['subscriber_id'] = subscriber_id
+            #     bapSubscribeBody['message']['entity']['unique_key_id'] = unique_key_id
+            #     bapSubscribeBody['message']['entity']['key_pair']['signing_public_key'] = subscriber['signingPublicKey']
+            #     bapSubscribeBody['message']['entity']['key_pair']['encryption_public_key'] = subscriber['encPublicKey']
+            #     bapSubscribeBody['message']['entity']['key_pair']['valid_from'] = current_datetime_iso8601
+            #     bapSubscribeBody['message']['network_participant'][0]['city_code'] = [
+            #         subscriber['city']]
+            #
+            #     print(json.dumps(bapSubscribeBody))
+            #
+            #     response = requests.post(registry_url, json=bapSubscribeBody)
+            #     if response.status_code == 200:
+            #         print(
+            #             f"/subscribe for {subscriber_uk_id} request successful :: {response.json()}")
+            #     else:
+            #         print(
+            #             f"/subscribe for {subscriber_uk_id} request failed :: {response.json()}")
+            if subscriber['type'] == 'BPP':
                 bppSubscribeBody['message']['request_id'] = request_id
                 bppSubscribeBody['message']['timestamp'] = current_datetime_iso8601
                 bppSubscribeBody['message']['entity']['subscriber_id'] = subscriber_id
