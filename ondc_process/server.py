@@ -176,7 +176,7 @@ def createHtml(subscriber, subscriber_id):
 app = Flask(__name__)
 
 
-@app.route('/ondc_subscribe', methods=['POST'])
+@app.route('/on_subscribe', methods=['POST'])
 def onsubscribe():
     data = request.get_json()
     print(f"/on_subscribe called :: Request -> {data}")
@@ -272,13 +272,14 @@ def subscribe():
 def verify_html():
     return render_template('ondc-site-verification.html')
 
-
-def start_flask_app():
-    app.run(port=app_port, host="0.0.0.0")
-
-
 if __name__ == '__main__':
-    start_flask_app()
+    app.run(host='0.0.0.0', port=8080)
+# def start_flask_app():
+#     app.run(port=app_port, host="0.0.0.0")
+#
+#
+# if __name__ == '__main__':
+#     start_flask_app()
 
 # from flask import Flask, request, jsonify
 #
